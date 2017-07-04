@@ -2,6 +2,8 @@
  * Export `redirect`
  */
 
+var Router = require('next/router')
+
 module.exports = redirect
 
 /**
@@ -13,6 +15,6 @@ function redirect (ctx, path) {
     ctx.res.writeHead(302, { Location: path })
     ctx.res.end()
   } else {
-    document.location.pathname = path
+    Router.replace(path)
   }
 }
