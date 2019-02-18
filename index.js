@@ -13,6 +13,13 @@ function redirect (ctx, path) {
     ctx.res.writeHead(302, { Location: path })
     ctx.res.end()
   } else {
-    document.location.pathname = path
+    const [ pathname, search ] = path.split('?')
+    const { location } = document
+    
+    if (search) {
+      location.href = `${location.origin}${pathname}?${search}`
+    } else {
+      location.href = `${location.origin}${pathname}`
+    }
   }
 }
